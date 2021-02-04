@@ -1,0 +1,38 @@
+body {
+  background-color: black;
+}
+
+.card {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 10px;
+  width: 23%;
+  margin: 3%
+}
+
+.card:hover {
+  cursor: pointer;
+  zoom: 1.2;
+  width: 25%;
+}
+
+.card-image {
+  height: 200px;
+
+}
+
+.pokemon-name {
+  font-family: 'Fira Code';
+  font-size: 20pt;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.card.pokemon-type h4 {
+  font-family: 'Fira Code';
+  font-size: 8pt;
+  color: black;
+}
