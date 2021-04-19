@@ -4,36 +4,55 @@ import "./App.css";
 import Card from "./Components/Card";
 
 const App = () => {
-  const url = "https://pokeapi.co/api/v2/pokemon?limit=151/";
+    
+    let _renderObject = () => {
+        return Object.keys(pokemon).map((obj, i) => {
+            return ( <
+                Card alt = { `${obj} image` }
+                image = { `https://pokeres.bastionbot.org/images/pokemon/${parseInt(i + 1)}.png` }
+                name = { pokemon[obj] }
+                key = { i }
+                pokeID = { i }
+                />
+            );
+        });
+    };
+    
+    const [pokemon, setPokemon] = useState({ name: "" });
+    
+    /*setPokemon({ res.data['results'] })*/
+    useEffect(() => {
+        let numberOfPokemon = 151
+        let url = `https://pokeapi.co/api/v2/pokemon?limit=${numberOfPokemon}/`;
+        async function getPokemon() {
+            const res = await axios.get(url);
+            const pokeName = res.data["results"].map((p) => p.name);
+            console.log(pokeName)
+            setPokemon(pokeName);
+        }
+        getPokemon();
 
-  const [pokemon, setPokemon] = useState({ name: "" });
+        let countNumber = 0
 
-  /*setPokemon({ res.data['results'] })*/
-  useEffect(() => {
-    async function getPokemon() {
-      const res = await axios.get(url);
-      const pokeName = res.data["results"].map((p) => p.name);
-      setPokemon(pokeName);
-    }
-    getPokemon();
-  }, []);
+        const onScroll = function () {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+                if (!countNumber) {
+                    numberOfPokemon += 20
+                    countNumber = 1
+                }
+                else numberOfPokemon += 21
+                url = `https://pokeapi.co/api/v2/pokemon?limit=${numberOfPokemon}/`;
+                getPokemon()
+                console.log("Loading more Pokemon");
+                }
+        }
 
-  const _renderObject = () => {
-    return Object.keys(pokemon).map((obj, i) => {
-      return (
-        <Card
-          alt={`${obj} image`}
-          image={`https://pokeres.bastionbot.org/images/pokemon/${parseInt(
-            i + 1
-          )}.png`}
-          name={pokemon[obj]}
-          key={i}
-        />
-      );
-    });
-  };
+        window.addEventListener('scroll', onScroll);
+        return () => window.removeEventListener('scroll',onScroll);
+    }, []);
+    
 
-  return <div className="App">{_renderObject()}</div>;
+    return <div className = "App" > { _renderObject() } </div>;
 };
 
 export default App;

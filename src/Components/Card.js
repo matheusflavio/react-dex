@@ -18,7 +18,7 @@ const Card = (props) => {
   return (
   <div className='card'>
     <img className="card-image" alt={props.alt} src={props.image} />
-    <h2 className='pokemon-name'>{capitalize(props.name)}</h2>
+    <h2 className='pokemon-name'>{parseInt(props.pokeID + 1)} - {capitalize(props.name)}</h2>
   </div>
 )}
 
