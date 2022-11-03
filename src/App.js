@@ -9,7 +9,7 @@ const App = () => {
         return Object.keys(pokemon).map((obj, i) => {
             return ( <
                 Card alt = { `${obj} image` }
-                image = { `https://pokeres.bastionbot.org/images/pokemon/${parseInt(i + 1)}.png` }
+                image = { `https://img.pokemondb.net/artwork/large/${pokemon[obj]}.jpg` }
                 name = { pokemon[obj] }
                 key = { i }
                 pokeID = { i }

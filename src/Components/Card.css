@@ -4,11 +4,12 @@ body {
 
 .card {
     display: flex;
+    color: white;
     flex-flow: column;
     align-items: center;
     flex-grow: 1;
     justify-content: space-between;
-    background-color: white;
+    background-color: rgb(27,27,27);
     border-radius: 10px;
     width: 23%;
     margin: 3%
@@ -19,14 +20,26 @@ body {
     scale: 1.15;
 }
 
+.card-header {
+	display: flex;
+	align-items: top;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	background-color: white;
+	justify-content: center;
+	height: 200px;
+	width: 100%;
+}
+
 .card-image {
-    height: 200px;
+    max-height: 200px;
+    max-width: 200px;
 }
 
 .pokemon-name {
     font-family: 'Fira Code';
     font-size: 20pt;
-    color: rgba(0, 0, 0, 0.85);
+    color: rgba(255,255,255,0.85);
 }
 
 .card.pokemon-type h4 {
